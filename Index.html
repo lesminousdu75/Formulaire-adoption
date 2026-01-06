@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'adoption - Minous et Compagnie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe8f0 100%);
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #ff6b9d;
+        }
+
+        .header h1 {
+            color: #ff6b9d;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .intro-section {
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe8f0 100%);
+            border-left: 5px solid #ff6b9d;
+            padding: 25px;
+            margin-bottom: 35px;
+            border-radius: 10px;
+        }
+
+        .intro-section h2 {
+            color: #ff6b9d;
+            margin-bottom: 18px;
+            font-size: 1.4em;
+        }
+
+        .intro-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .intro-section li {
+            padding: 10px 0;
+            color: #444;
+            font-size: 1.05em;
+        }
+
+        .intro-section li::before {
+            content: "❣️ ";
+        }
+
+        .note-box {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%);
+            color: white;
+            padding: 15px 25px;
+            margin: 0 -40px 25px -40px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+
+        .required {
+            color: #ff6b9d;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #ff6b9d;
+            background: white;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .radio-group,
+        .checkbox-group-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .radio-item,
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+
+        .radio-item:hover,
+        .checkbox-item:hover {
+            border-color: #ff6b9d;
+            background: white;
+        }
+
+        .radio-item input[type="radio"],
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .radio-item label,
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .info-text {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-top: 8px;
+            padding: 10px;
+            background: #f8f8f8;
+            border-radius: 5px;
+        }
+
+        .submit-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%);
+            color: white;
+            padding: 18px 60px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 25px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .contact-box h3 {
+            color: #ff6b9d;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .contact-box p {
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .email-highlight {
+            color: #ff6b9d;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .signature {
+            margin-top: 20px;
+            font-style: italic;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+
+            .section-title {
+                margin-left: -25px;
+                margin-right: -25px;
+                padding: 12px 20px;
+                font-size: 1.1em;
+            }
+
+            .header h1 {
+                font-size: 1.6em;
+            }
+
+            .submit-btn {
+                padding: 15px 40px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐱 Formulaire d'Adoption 🐱</h1>
+            <div class="subtitle">Association Minous et Compagnie</div>
+        </div>
+
+        <div class="intro-section">
+            <h2>Nous recherchons des adoptants :</h2>
+            <ul>
+                <li><strong>Responsables et engagés</strong> pour la vie du chat (15-20 ans)</li>
+                <li>Prêts à assurer les soins vétérinaires (vaccins, stérilisation, suivi)</li>
+                <li>Disposant d'un logement adapté (sécurisé, espace suffisant)</li>
+                <li>Patients et bienveillants pour l'adaptation des chatons et des chats</li>
+            </ul>
+            <div class="note-box">
+                Notre association a pour but de créer une relation de confiance pour une adoption réussie et respectueuse de nos conditions d'adoption. Cette présentation nous permettra de faire connaissance et de vous aiguiller sur le compagnon idéal correspondant à votre profil.
+            </div>
+        </div>
+
+        <form id="adoptionForm">
+            <!-- COORDONNÉES -->
+            <div class="section">
+                <div class="section-title">📋 Vos coordonnées</div>
+                
+                <div class="form-group">
+                    <label>Nom et Prénom <span class="required">*</span></label>
+                    <input type="text" name="nom" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Adresse email <span class="required">*</span></label>
+                    <input type="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Téléphone <span class="required">*</span></label>
+                    <input type="tel" name="telephone" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Vos disponibilités pour être contacté(e) <span class="required">*</span></label>
+                    <textarea name="disponibilites" required></textarea>
+                </div>
+            </div>
+
+            <!-- COMPOSITION DU FOYER -->
+            <div class="section">
+                <div class="section-title">👨‍👩‍👧‍👦 Composition du foyer</div>
+
+                <div class="form-group">
+                    <label>Nombre de personnes dans le foyer <span class="required">*</span></label>
+                    <input type="number" name="nb_personnes" required min="1">
+                </div>
+
+                <div class="form-group">
+                    <label>Âge(s) et situation des membres du foyer <span class="required">*</span></label>
+                    <textarea name="composition_foyer" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Présentation de votre foyer <span class="required">*</span></label>
+                    <textarea name="presentation_foyer" required style="min-height: 150px;"></textarea>
+                    <p class="info-text">Cette courte présentation nous permettra de faire connaissance et de mieux comprendre votre environnement.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Avez-vous déjà eu des animaux ? <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="experience_animaux" value="oui" id="exp_oui" required>
+                            <label for="exp_oui">Oui</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="experience_animaux" value="non" id="exp_non">
+                            <label for="exp_non">Non</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Avez-vous actuellement d'autres animaux ? <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="autres_animaux" value="oui" id="animaux_oui" required>
+                            <label for="animaux_oui">Oui</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="autres_animaux" value="non" id="animaux_non">
+                            <label for="animaux_non">Non</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Si oui, précisez (espèce, âge, caractère) :</label>
+                    <textarea name="details_animaux"></textarea>
+                </div>
+            </div>
+
+            <!-- TYPE DE LOGEMENT -->
+            <div class="section">
+                <div class="section-title">🏠 Type de logement</div>
+
+                <div class="form-group">
+                    <label>Type de logement <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="type_logement" value="Appartement sans balcon" id="appt_sans" required>
+                            <label for="appt_sans">Appartement sans balcon</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="type_logement" value="Appartement avec balcon" id="appt_avec">
+                            <label for="appt_avec">Appartement avec balcon</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="type_logement" value="Maison sans jardin" id="maison_sans">
+                            <label for="maison_sans">Maison sans jardin</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="type_logement" value="Maison avec jardin" id="maison_avec">
+                            <label for="maison_avec">Maison avec jardin</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Nombre approximatif de fenêtres <span class="required">*</span></label>
+                    <input type="number" name="nb_fenetres" required min="0">
+                    <p class="info-text">Cette information nous permet d'évaluer les besoins en sécurisation.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Si vous avez un balcon, décrivez-le :</label>
+                    <textarea name="description_balcon"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Si vous avez un jardin, est-il clôturé ? <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="jardin_cloture" value="Non applicable" id="jardin_na" required>
+                            <label for="jardin_na">Non applicable (pas de jardin)</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="jardin_cloture" value="Oui totalement" id="jardin_oui">
+                            <label for="jardin_oui">Oui, totalement clôturé</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="jardin_cloture" value="Partiellement" id="jardin_partiel">
+                            <label for="jardin_partiel">Partiellement clôturé</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="jardin_cloture" value="Non" id="jardin_non">
+                            <label for="jardin_non">Non clôturé</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Y a-t-il une route passante à proximité ? <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="route_passante" value="Oui très passante" id="route_oui" required>
+                            <label for="route_oui">Oui, route très passante</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="route_passante" value="Moyennement fréquentée" id="route_mod">
+                            <label for="route_mod">Route moyennement fréquentée</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="route_passante" value="Non rue calme" id="route_non">
+                            <label for="route_non">Non, rue calme ou impasse</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Êtes-vous propriétaire ou locataire ? <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="statut_logement" value="Propriétaire" id="proprio" required>
+                            <label for="proprio">Propriétaire</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="statut_logement" value="Locataire" id="locataire">
+                            <label for="locataire">Locataire (animaux autorisés)</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SÉCURISATION -->
+            <div class="section">
+                <div class="section-title">🔒 Sécurisation du logement</div>
+
+                <div class="form-group">
+                    <label>Acceptez-vous de sécuriser votre logement avant l'arrivée du chat ? <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="accepte_securisation" value="Oui tout à fait" id="secu_oui" required>
+                            <label for="secu_oui">Oui, tout à fait</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="accepte_securisation" value="Déjà sécurisé" id="secu_deja">
+                            <label for="secu_deja">C'est déjà sécurisé</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="accepte_securisation" value="Oui mais besoin de conseils" id="secu_conseils">
+                            <label for="secu_conseils">Oui, mais j'ai besoin de conseils</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="accepte_securisation" value="Non" id="secu_non">
+                            <label for="secu_non">Non</label>
+                        </div>
+                    </div>
+                    <p class="info-text">Nous pourrons vous prodiguer des solutions de sécurisation optimisées et peu onéreuses.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Commentaires sur la sécurisation :</label>
+                    <textarea name="commentaires_securisation"></textarea>
+                </div>
+            </div>
+
+            <!-- VACANCES -->
+            <div class="section">
+                <div class="section-title">✈️ Gestion des vacances et absences</div>
+
+                <div class="form-group">
+                    <label>Avez-vous un relais pour les vacances et absences ? <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="relais_vacances" value="Oui" id="relais_oui" required>
+                            <label for="relais_oui">Oui</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="relais_vacances" value="Non pas encore" id="relais_non">
+                            <label for="relais_non">Non, pas encore</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="relais_vacances" value="Je ne pars pas" id="relais_jamais">
+                            <label for="relais_jamais">Je ne pars pas en vacances</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Précisez votre solution pour les absences <span class="required">*</span></label>
+                    <textarea name="solution_absences" required></textarea>
+                </div>
+            </div>
+
+            <!-- MOTIVATION -->
+            <div class="section">
+                <div class="section-title">💭 Votre motivation et projet d'adoption</div>
+
+                <div class="form-group">
+                    <label>Pourquoi souhaitez-vous adopter un chat ? <span class="required">*</span></label>
+                    <textarea name="motivation" required style="min-height: 120px;"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Quel profil de chat recherchez-vous ? <span class="required">*</span></label>
+                    <textarea name="profil_recherche" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Accepteriez-vous un chat avec des besoins spécifiques ?</label>
+                    <div class="checkbox-group-container">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="besoins_speciaux" value="Chat timide" id="bs_timide">
+                            <label for="bs_timide">Chat timide nécessitant de la patience</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="besoins_speciaux" value="Chat nécessitant des soins" id="bs_soins">
+                            <label for="bs_soins">Chat nécessitant des soins réguliers</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="besoins_speciaux" value="Chat senior" id="bs_age">
+                            <label for="bs_age">Chat senior</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="besoins_speciaux" value="Chat avec handicap" id="bs_handicap">
+                            <label for="bs_handicap">Chat avec handicap léger</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="besoins_speciaux" value="Non" id="bs_non">
+                            <label for="bs_non">Non, uniquement chat sans besoins particuliers</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMMENTAIRES -->
+            <div class="section">
+                <div class="section-title">💬 Commentaires</div>
+
+                <div class="form-group">
+                    <label>Avez-vous des questions ou commentaires supplémentaires ?</label>
+                    <textarea name="commentaires_finaux"></textarea>
+                </div>
+            </div>
+
+            <!-- SOUMISSION -->
+            <div class="submit-section">
+                <button type="submit" class="submit-btn">📧 Envoyer ma candidature</button>
+
+                <div class="contact-box">
+                    <h3>📬 Envoi de votre candidature</h3>
+                    <p>Votre candidature sera envoyée par email à :</p>
+                    <p class="email-highlight">minous.et.compagnie@gmail.com</p>
+                    <p style="margin-top: 15px;">Une bénévole prendra contact avec vous dans les meilleurs délais.</p>
+                    <div class="signature">
+                        <p>Cordialement,</p>
+                        <p><strong>L'équipe Minous et Compagnie 🐾</strong></p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('adoptionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            let body = "CANDIDATURE D'ADOPTION - MINOUS ET COMPAGNIE\n\n";
+            body += "=".repeat(60) + "\n\n";
+            
+            body += "COORDONNÉES\n";
+            body += "-".repeat(60) + "\n";
+            body += "Nom : " + formData.get('nom') + "\n";
+            body += "Email : " + formData.get('email') + "\n";
+            body += "Téléphone : " + formData.get('telephone') + "\n";
+            body += "Disponibilités : " + formData.get('disponibilites') + "\n\n";
+            
+            body += "COMPOSITION DU FOYER\n";
+            body += "-".repeat(60) + "\n";
+            body += "Nombre de personnes : " + formData.get('nb_personnes') + "\n";
+            body += "Composition : " + formData.get('composition_foyer') + "\n";
+            body += "Présentation : " + formData.get('presentation_foyer') + "\n";
+            body += "Expérience animaux : " + formData.get('experience_animaux') + "\n";
+            body += "Autres animaux : " + formData.get('autres_animaux') + "\n";
+            if (formData.get('details_animaux')) {
+                body += "Détails : " + formData.get('details_animaux') + "\n";
+            }
+            body += "\n";
+            
+            body += "TYPE DE LOGEMENT\n";
+            body += "-".repeat(60) + "\n";
+            body += "Type : " + formData.get('type_logement') + "\n";
+            body += "Nombre de fenêtres : " + formData.get('nb_fenetres') + "\n";
+            if (formData.get('description_balcon')) {
+                body += "Balcon : " + formData.get('description_balcon') + "\n";
+            }
+            body += "Jardin clôturé : " + formData.get('jardin_cloture') + "\n";
+            body += "Route passante : " + formData.get('route_passante') + "\n";
+            body += "Statut : " + formData.get('statut_logement') + "\n\n";
+            
+            body += "SÉCURISATION\n";
+            body += "-".repeat(60) + "\n";
+            body += "Accepte sécurisation : " + formData.get('accepte_securisation') + "\n";
+            if (formData.get('commentaires_securisation')) {
+                body += "Commentaires : " + formData.get('commentaires_securisation') + "\n";
+            }
+            body += "\n";
+            
+            body += "VACANCES ET ABSENCES\n";
+            body += "-".repeat(60) + "\n";
+            body += "Relais : " + formData.get('relais_vacances') + "\n";
+            body += "Solution : " + formData.get('solution_absences') + "\n\n";
+            
+            body += "MOTIVATION ET PROJET\n";
+            body += "-".repeat(60) + "\n";
+            body += "Motivation : " + formData.get('motivation') + "\n\n";
+            body += "Profil recherché : " + formData.get('profil_recherche') + "\n\n";
+            
+            const besoins = formData.getAll('besoins_speciaux');
+            if (besoins.length > 0) {
+                body += "Besoins spécifiques : " + besoins.join(', ') + "\n\n";
+            }
+            
+            if (formData.get('commentaires_finaux')) {
+                body += "COMMENTAIRES\n";
+                body += "-".repeat(60) + "\n";
+                body += formData.get('commentaires_finaux') + "\n\n";
+            }
+            
+            body += "=".repeat(60);
+            
+            const subject = "Candidature d'adoption - " + formData.get('nom');
+            const mailto = "mailto:minous.et.compagnie@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+            
+            window.location.href = mailto;
+        });
+    </script>
+</body>
+</html>
