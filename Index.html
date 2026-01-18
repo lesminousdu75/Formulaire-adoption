@@ -536,6 +536,11 @@
             <div class="section-title">💭 Votre motivation et projet d'adoption</div>
 
             <div class="form-group">
+                <label>Nom du chat souhaité (si vous avez vu un chat sur nos annonces)</label>
+                <input type="text" name="nom_chat" placeholder="Nom du chat">
+            </div>
+
+            <div class="form-group">
                 <label>Pourquoi souhaitez-vous adopter un chat ? <span class="required">*</span></label>
                 <textarea name="motivation" required style="min-height: 120px;"></textarea>
             </div>
@@ -653,6 +658,9 @@
         
         body += "MOTIVATION ET PROJET\n";
         body += "-".repeat(60) + "\n";
+        if (formData.get('nom_chat')) {
+            body += "Nom du chat souhaité : " + formData.get('nom_chat') + "\n\n";
+        }
         body += "Motivation : " + formData.get('motivation') + "\n\n";
         body += "Profil recherché : " + formData.get('profil_recherche') + "\n\n";
         
